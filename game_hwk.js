@@ -7,13 +7,13 @@ window.onload = ()=>{
 
 //global variable
 
-var i = 0;
-var clicks;
-var timeScore;
+let i = 0;
+let clicks;
+let timeScore;
 
 /*start button initiates game and starts counter
 initiates game start on button press*/
-var startButton = document.getElementById("startGame")
+const startButton = document.getElementById("startGame")
 startButton.addEventListener("click", ()=>{
     tiles.forEach(tile => tile.addEventListener("click", displayTile));
     resetTiles();
@@ -39,8 +39,8 @@ document.getElementById('endGame').addEventListener("click", ()=>{
 /* createRandom number function
 creates random number which will later be assigned an icon
 creates an array of 12 random numbers*/
-var randomOrderArray = [];
-var setRandomTileOrder = (numberOfTiles)=>{
+const randomOrderArray = [];
+const setRandomTileOrder = (numberOfTiles)=>{
     while (randomOrderArray.length < numberOfTiles) {
         let randomNum = Math.random();
         randomNum = randomNum * (numberOfTiles -1);
@@ -55,9 +55,9 @@ var setRandomTileOrder = (numberOfTiles)=>{
 }
 
 //Set tiles variable for use throughout code
-var tiles = document.querySelectorAll(".gametile");
+const tiles = document.querySelectorAll(".gametile");
 
-var setTiles = ()=>{
+const setTiles = ()=>{
     for(let tile of tiles){
         tile.innerHTML = randomOrderArray[i];
         i++;
@@ -88,9 +88,9 @@ var setTiles = ()=>{
 }
 
 //Timer Function -> starts timer when game is started end when game is compvare or game is cancelled.
-var count;
+let count;
 
-var startTimer = ()=>{
+const startTimer = ()=>{
     clearInterval(timer); //clears timer before timer starts. This fixes issue if timer is triggered again, when already running. 
     count = 0, timer = setInterval(function () {
         count = count++;
@@ -106,28 +106,28 @@ var startTimer = ()=>{
 
 /* icon assign function -> replaces random numbers with icon pairs
 when icon assigned, tile is also assigned an attribute icon variables */
-var football = `<i class="fas fa-football-ball"></i>`;
-var mask = `<i class="fas fa-ufo"></i>`;
-var pizza = `<i class="fas fa-pizza-slice"></i>`;
-var lightning = `<i class="far fa-bolt"></i>`;
-var bulb = `<i class="fal fa-lightbulb"></i>`;
-var rocket = `<i class="fas fa-rocket"></i>`;
-var bacteria = `<i class="fas fa-bacterium"></i>`;
-var kiwi = `<i class="fas fa-kiwi-bird"></i>`;
-var cocktail = `<i class="fas fa-cocktail"></i>`;
+let football = `<i class="fas fa-football-ball"></i>`;
+let mask = `<i class="fas fa-ufo"></i>`;
+let pizza = `<i class="fas fa-pizza-slice"></i>`;
+let lightning = `<i class="far fa-bolt"></i>`;
+let bulb = `<i class="fal fa-lightbulb"></i>`;
+let rocket = `<i class="fas fa-rocket"></i>`;
+let bacteria = `<i class="fas fa-bacterium"></i>`;
+let kiwi = `<i class="fas fa-kiwi-bird"></i>`;
+let cocktail = `<i class="fas fa-cocktail"></i>`;
 
 
-var selectedTile = ''
-var tileIcon;
-var tileIcons =[];
-var tileIds =[];
+let selectedTile = ''
+let tileIcon;
+let tileIcons =[];
+let tileIds =[];
 
 
 //displayTile -> function which listens for click event and displays tile value on click
 tiles.forEach(tile => tile.addEventListener("click", displayTile));
-var n = 0;
+let n = 0;
 
-var displayTile = (e)=>{
+const displayTile = (e)=>{
     
     //reveal tile by changing bg color and changing font-size from 0 to 3em;
     this.classList.remove("hideTile");
@@ -149,7 +149,7 @@ var displayTile = (e)=>{
     }
 };
 
-var checkMatch = (tileIcons, tileIds,n)=>{
+const checkMatch = (tileIcons, tileIds,n)=>{
     console.log(n);
     console.log(n+1);
         if(tileIcons[n] !== tileIcons[n+1]){
@@ -174,13 +174,13 @@ var checkMatch = (tileIcons, tileIds,n)=>{
 
 
 //countClicks -> calculates number of user clicks -> needed to calculate score
-var countMoves=()=>{
+const countMoves=()=>{
     clicks = n;
     document.getElementById("clicks").firstChild.innerHTML = clicks;
 }
 
 //ClearTiles -> Clear tiles when new game is started;
-var clearTiles=()=>{
+const clearTiles=()=>{
     for(var n = 0; n < tiles.length; n++){
         tiles[n].style.fontSize = "0em";
         tiles[n].style.backgroundColor = "#44445a";
@@ -195,7 +195,7 @@ if match icons remain displayed and correctly guessed tiles become disabled. */
 //compvareGAme -> When the number of correct answers == the number of cells the game can end.
 
 //calculateScore -> adds number of clicks and elapsed time to calculate score & displays score upon game compvarion. 
-var calculateScore = ()=>{
+const calculateScore = ()=>{
     timeScore = parseInt(timeScore);
     let calculatedScore = (timeScore + clicks);
     console.log(calculatedScore);
@@ -205,9 +205,9 @@ var calculateScore = ()=>{
 
 //additional levels of difficulty
 
-var newRGB;
+let newRGB;
 
-var generateRGBVal=()=>{
+const generateRGBVal=()=>{
 
     let generateRandomColor=()=>{
         let r = Math.random();
@@ -216,7 +216,7 @@ var generateRGBVal=()=>{
         return r;
     }
 
-    var rgbValue = [];
+    let rgbValue = [];
     for (var i = 0; i <= 2; i++) {
         var singleVal = generateRandomColor();
         rgbValue.push(singleVal);
@@ -229,7 +229,7 @@ var generateRGBVal=()=>{
 // publish leaderboard;
 //use api to generate random icon or picture
 
-var resetTiles=()=>{
+const resetTiles=()=>{
     for(let tile of tiles){
         tile.style.backgroundColor ="#44445a";
         tile.removeAttribute("state");
